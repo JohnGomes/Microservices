@@ -1,0 +1,9 @@
+# docker-compose.override.yml
+
+#
+catalog.api:
+  environment:
+    - ConnectionString=Server=sql.data;Database=Microsoft.eShopOnContainers.Services.CatalogDb;User Id=sa;Password=Pass@word
+    # Additional environment variables for this service
+  ports:
+    - "5101:80"
