@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -53,5 +54,18 @@ namespace Catalog.Api.Controllers
             return Ok(model);
         }
         //...
+        
+        private List<CatalogItem> ChangeUriPlaceholder(List<CatalogItem> items)
+        {
+            var baseUri = _settings.PicBaseUrl;
+            var azureStorageEnabled = _settings.AzureStorageEnabled;
+
+            foreach (var item in items)
+            {
+                item.FillProductUrl(baseUri, azureStorageEnabled: azureStorageEnabled);
+            }
+
+            return items;
+        }
     }
 }
